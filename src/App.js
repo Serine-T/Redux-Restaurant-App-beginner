@@ -4,8 +4,8 @@ import Restaurant from './components/Restaurant';
 import { connect } from 'react-redux';
 import { deleteRestaurantAction } from './redux/RestaurantAction';
 
-function App(props) {
-  const { retaurantListState, remove } = props;
+function App({ retaurantListState, remove }) {
+  // const { retaurantListState, remove } = props;
   return (
     <div className="container">
       <Restaurant />
@@ -26,18 +26,14 @@ function App(props) {
   );
 }
 
-const mapStateToProps = (state) =>{
-  return {
-    retaurantListState: state,
-  }
-};
+const mapStateToProps = (state) =>({
+  retaurantListState: state,
+});
 
-const mapDispatchToProps=  (dispatch) =>{
-  return {
-    remove: (index) =>{
-      dispatch(deleteRestaurantAction(index));
-    }
-  };
-};
+const mapDispatchToProps=  (dispatch) =>({
+  remove: (index) =>{
+    dispatch(deleteRestaurantAction(index));
+  }
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

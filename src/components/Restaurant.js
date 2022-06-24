@@ -2,8 +2,8 @@ import React, { useState } from 'react'
 import { connect } from 'react-redux';
 import { addRestaurantAction } from '../redux/RestaurantAction';
 
-function Restaurant(props) {
-  const {retaurantList, add } = props;
+function Restaurant({ add }) {
+  // const { add } = props;
   const [restaurantState, setRestaurantState] = useState({})
   return (
     <div className="mt-5">  
@@ -11,7 +11,7 @@ function Restaurant(props) {
       <form onSubmit={e => {
         e.preventDefault();
         // console.log(restaurantState)
-        add(restaurantState)
+        add(restaurantState);
       }
       }> 
         <div className="mb-3">
@@ -40,18 +40,14 @@ function Restaurant(props) {
   )
 }
 
-const mapStateToProps = (state) =>{
-  return {
-    retaurantList: state,
-  }
-};
+const mapStateToProps = (state) =>({
+  retaurantList: state,
+});
 
-const mapDispatchToProps=  (dispatch) =>{
-  return {
-    add: (res) => {
-      dispatch(addRestaurantAction(res));
-    }
+const mapDispatchToProps=  (dispatch) =>({
+  add: (res) => {
+    dispatch(addRestaurantAction(res));
   }
-};
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Restaurant);
